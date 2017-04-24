@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-//import reactRoutes from './../routes/routes.js';
-//import NavBar from './components/navBar.js';
-import SearchBar from './containers/searchBar.js';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import ReduxPromise from 'redux-promise';
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <SearchBar />
-      </div>
-    );
-  }
-}
+import App from './components/App.js';
+import reducers from './reducers/index.js';
 
-ReactDOM.render(<App />, document.getElementById('app'));
+const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
+
+ReactDOM.render(
+  <Provider store={createStoreWithMiddleware(reducers)} >
+    <App />
+  </Provider>
+  , document.getElementById('app'));

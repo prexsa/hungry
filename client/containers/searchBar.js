@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchRestaurant } from '../actions/index.js';
+
 
 class SearchBar extends Component {
 	constructor(props) {
@@ -12,7 +15,7 @@ class SearchBar extends Component {
 	}
 
 	componentDidMount() {
-		// get lon and lats of user's locations
+		// get long and lats of user's locations
 	    if (navigator.geolocation) {
 	        navigator.geolocation.getCurrentPosition(showCurrentPosition);
 	    } else { 
@@ -26,16 +29,18 @@ class SearchBar extends Component {
 
 	render() {
 		return (
-			<form onSubmit={this.onFormSubmit} className="input-group">
-				<input
-				  placeholder="Find a restaurant in your area"
-				  className="form-control"
-				  value={this.state.term}
-				  onChange={this.onInputChange} />
-				<span className="input-group-btn">
-				  <button type="submit" className="btn btn-secondary">Search</button>
-				</span>
-			</form>
+			<div className="searchbar-container">
+				<form onSubmit={this.onFormSubmit} className="input-group">
+					<input
+					  placeholder="Find a restaurant in your area"
+					  className="form-control"
+					  value={this.state.term}
+					  onChange={this.onInputChange} />
+					<span className="input-group-btn">
+					  <button type="submit" className="btn btn-secondary">Search</button>
+					</span>
+				</form>
+			</div>
 		)
 	}
 
@@ -45,13 +50,13 @@ class SearchBar extends Component {
 
 	onFormSubmit(e) {
 		e.preventDefault();
-
-		// call the action creator
-		axios.post('/search', {term: 95051}).then((resp) => {
-			console.log('SearchBar resp: ', resp);
-		})
+		this.props.fetchRestaurant(this.state.term);
 		this.setState({ term: '' })
 	}
 }
 
-export default SearchBar;
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({ fetchRestaurant }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(SearchBar);

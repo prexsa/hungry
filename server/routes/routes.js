@@ -18,7 +18,6 @@ module.exports = function(app, express) {
 		console.log('body: ', req.body);
 		yelp.search({ term: 'donuts', location: 90805 })
 			.then(function (data) {
-		  	//console.log('/search: ', data);
 		  	res.send(data);
 		})
 		.catch(function (err) {
