@@ -1,5 +1,17 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var reactRoutes = require('./../routes/routes.js');
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+//import reactRoutes from './../routes/routes.js';
+//import NavBar from './components/navBar.js';
+import SearchBar from './containers/searchBar.js';
 
-ReactDOM.render(reactRoutes, document.getElementById('app'));
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <SearchBar />
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById('app'));
