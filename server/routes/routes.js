@@ -16,7 +16,7 @@ module.exports = function(app, express) {
 	// Routes
 	app.post('/search', (req, res) => {
 		console.log('body: ', req.body);
-		yelp.search({ term: 'donuts', location: 90805 })
+		yelp.search({ term: 'food', location: 90805 })
 			.then(function (data) {
 		  	res.send(data);
 		})
