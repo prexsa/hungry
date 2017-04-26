@@ -3,6 +3,10 @@ body {
 	letter-spacing: 0.085em;
 }
 
+ul {
+  list-style-type: none;
+}
+
 .app-container {
   text-align: center;
   margin-top: 10px;
@@ -15,16 +19,34 @@ body {
 }
 
 .main-container {
-  width: 700px;
+  width: 875px;
   margin-left: auto;
   margin-right: auto;
-}
-
-.content-container {
-  float:left;
+  margin-top: 35px;
+  padding: 10px;
 }
 
 .map-container {
-  float: left;
-  overflow: hidden;
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.content-container {
+  width: 390px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  position: relative;
+  top: -90px;
+  background: white;
+  padding: 30px 20px;
+  border-radius: 15px;
+  border: 1px solid #429ef4;
+}
+
+.nav-item {
+  margin: 3px;
+  padding: 2px;
 }
