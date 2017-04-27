@@ -7,23 +7,60 @@ ul {
   list-style-type: none;
 }
 
+nav li:first-child {
+  border-right: 1px solid #f0ad4e;
+  padding-right: 8px;
+}
+
+.float-right {
+  float: right;
+}
+
+.clearfix {
+  overflow: auto;
+  zoom: 1;
+}
+
 .app-container {
   text-align: center;
   margin-top: 10px;
 }
 
+.header-container {
+  width: 900px;
+  margin: 30px auto;
+  font-size: 12px;
+}
+
+.header-container h1 {
+  margin-left: 150px;
+}
+
 .searchbar-container {
-  width: 550px;
+  width: 350px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .main-container {
-  width: 875px;
+  width: 900px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 35px;
   padding: 10px;
+  border: 1px solid gray;
+}
+
+.category-container {
+  border: 2px solid #0275d8;
+  padding: 15px 5px;
+  border-radius: 10px;
+}
+
+.category-container img {
+  width: 170px;
+  height: 110px;
+  margin-top: 5px;
 }
 
 .map-container {

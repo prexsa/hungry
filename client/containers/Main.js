@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { GOOGLE_MAPS_API } from '../../config.js';
 
+import Categories from '../containers/Categories.js';
+
 
 class Main extends Component {
 
@@ -28,12 +30,12 @@ class Main extends Component {
     const data = this.props.restaurants;
     const buzz = data[0];
     if(!buzz) {
-      return <div>Loading</div>
+      return <Categories />
     }
     const business = buzz.businesses;
 console.log("Main.js data: ", business[0]);
     const name = business[0].name;
-    const phone = business[0].display_phone;
+    const phone = business[0].display_phone.substr(1);
     const address = business[0].location.display_address;
     
     let addressStr = '';
@@ -65,7 +67,7 @@ console.log("Main.js data: ", business[0]);
             </li>
             <li>
               {phone}
-              <hr width="10%" />
+              <hr width="30%" />
             </li>
             <li>
               {addressStr}
