@@ -9,8 +9,8 @@ class App extends Component {
     return (
       <div className='app-container'> 
         <Header />
-        <SearchBar />
         {this.props.children}
+        <SearchBar />
         <Main />
       </div>
     )

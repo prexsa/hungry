@@ -1,8 +1,13 @@
 import { combineReducers } from 'redux';
-import RestaurantReducer from './reducer_restaurant.js';
+import { reducer as form } from 'redux-form';
+
+import restaurantReducer from './reducer_restaurant.js';
+import authReducer from './reducer_auth.js';
 
 const rootReducer = combineReducers({
-  restaurants: RestaurantReducer
+  restaurants: restaurantReducer,
+  auth: authReducer,
+  form
 });
 
 export default rootReducer;

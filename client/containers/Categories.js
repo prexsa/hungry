@@ -23,7 +23,7 @@ class Categories extends Component {
             <div className="category-container">
               <h6>American</h6>
               <hr width="50%" />
-              <img src="https://eat24-files-live.s3.amazonaws.com/cuisines/v4/american.jpg?Signature=iUbccRrihzCrGD3LrxzeZocFgbU%3D&Expires=1493254759&AWSAccessKeyId=AKIAIEJ2GCCJRT63TBYA" />
+              <img src="http://i.ndtvimg.com/i/2016-03/american-food_625x350_61458982932.jpg" />
             </div>
           </div>
           <div className="col-xs-6 col-md-3">

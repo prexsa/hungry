@@ -3,11 +3,18 @@ var React = require('react');
 var Router = require('react-router');
 var bodyParser = require('body-parser');
 var path = require('path');
+var morgan = require('morgan');
+var mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost:auth/auth');
+
+
 
 var app = express();
 
 app.set('port', (process.env.PORT || 8080));
-app.use(bodyParser.json());
+app.use(morgan('combined'));
+app.use(bodyParser.json({ type: '*/*'}));
 
 require('./routes/routes.js')(app, express);
 

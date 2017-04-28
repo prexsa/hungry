@@ -1,6 +1,8 @@
 var path = require('path');
 var Yelp = require('yelp');
 
+var Authentication = require('../controllers/authentication.js');
+
 var yelp = new Yelp({
 	consumer_key: '87NU8aZtFfawZ9u_SpR6mg',
 	consumer_secret: '_6Y6n7L01r1SPXJa8h1OPX9tFrw',
@@ -15,7 +17,7 @@ module.exports = function(app, express) {
 
 	// Routes
 	app.post('/search', (req, res) => {
-		console.log('body: ', req.body);
+		console.log('/search: ', req.body);
 		const area = req.body.area;
 		yelp.search({ term: 'food', location: area })
 			.then(function (data) {
@@ -25,4 +27,10 @@ module.exports = function(app, express) {
 		  console.error(err);
 		});
 	})
+
+	app.post('/login', (req, res) => {
+		console.log('/login: ', req.body);
+	})
+
+	app.post('/signup', Authentication.signup);
 }
