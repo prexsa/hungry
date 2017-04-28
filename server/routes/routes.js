@@ -1,7 +1,12 @@
 var path = require('path');
 var Yelp = require('yelp');
+var passport = require('passport');
 
 var Authentication = require('../controllers/authentication.js');
+var passportService = require('../services/passport.js');
+
+var requireAuth = passport.authenticate('jwt', { session: false });
+var requireLogin = passport.authenticate('local', { session: false });
 
 var yelp = new Yelp({
 	consumer_key: '87NU8aZtFfawZ9u_SpR6mg',
