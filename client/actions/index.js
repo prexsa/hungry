@@ -30,6 +30,12 @@ export function logIn({email, password}) {
   }
 }
 
+export function register({email, password}) {
+  return function(dispatch) {
+    console.log('register email: ', email);
+  }
+}
+
 export function authError(error) {
   return {
     type: AUTH_ERROR,

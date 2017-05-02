@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { GOOGLE_MAPS_API } from '../../config.js';
 
-import Categories from '../containers/Categories.js';
+import Area from '../containers/ExploreArea.js';
 
 
 class Main extends Component {
@@ -30,7 +30,7 @@ class Main extends Component {
     const data = this.props.restaurants;
     const buzz = data[0];
     if(!buzz) {
-      return <Categories />
+      return <Area />
     }
     const business = buzz.businesses;
 console.log("Main.js data: ", business[0]);

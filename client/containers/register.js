@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { reduxForm, Field } from 'redux-form';
-import * as actions from '../actions/index.js';
-import { Checkbox } from 'react-bootstrap';
+import { Field, reduxForm } from 'redux-form';
 
 const required = value => value ? undefined : 'Required'
 const maxLength = max => value =>
@@ -27,8 +25,7 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
     </div>
 )
 
-
-class Login extends Component {
+class Register extends Component {
   
   handleFormSubmit({email, password}) {
     console.log(email, password);
@@ -51,7 +48,7 @@ class Login extends Component {
 
      return (
       <div className="access-container">
-        <h4><strong>Welcome, Login To Your Account</strong></h4>
+        <h4><strong>Create New Account</strong></h4>
         <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <Field 
             name="email" 
@@ -68,18 +65,13 @@ class Login extends Component {
             label="Your Password"
             validate={[ required, maxLength15 ]}
           />
-          <Checkbox>Remember me</Checkbox>
-          <button action="submit" className="btn btn-primary">Login</button>
+          <button action="submit" className="btn btn-primary">Register</button>
         </form>
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return { errorMessage: state.auth.error };
-}
-
 export default reduxForm({
-  form: 'login'
-}, mapStateToProps, actions)(Login);
+  form: 'register'
+})(Register);

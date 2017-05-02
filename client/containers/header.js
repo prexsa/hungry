@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
-import { connect } from 'react-redux';
+import { Nav, Navbar, MenuItem, NavDropdown} from 'react-bootstrap';
 
-import Login from '../containers/logIn.js'
+import Login from '../containers/login.js';
+import Register from '../containers/register.js';
 
 class Header extends Component {
   render() {
     return (
-      <div className="header-container">
-        <nav className="navbar navbar-fixed float-right">
-          <ul className="nav nav-pills">
-            <li className="nav-item">
-              <Link to="/login">Log In</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/">Sign Up</Link>
-            </li>
-          </ul>
-        </nav>
-        <h1>PICK!</h1>
-      </div>
+      <Navbar inverse collapseOnSelect>
+        <Navbar.Collapse>
+          <Nav pullRight>
+            <NavDropdown eventKey={1} title="login" id="basic-nav-dropdown" noCaret>
+              <Login />
+            </NavDropdown>
+            <NavDropdown eventKey={2} title="register" id="basic-nav-dropdown" noCaret>
+              <Register />
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
     );
   }
 }
