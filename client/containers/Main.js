@@ -30,7 +30,6 @@ class Main extends Component {
   }
 
   render() {
-    console.log('Main: ', this.props)
     const data = this.props.restaurants;
     const buzz = data[0];
     if(!buzz) {

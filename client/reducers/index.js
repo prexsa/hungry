@@ -5,8 +5,8 @@ import restaurantReducer from './reducer_restaurant.js';
 import authReducer from './reducer_auth.js';
 
 const rootReducer = combineReducers({
-  restaurants: restaurantReducer,
   auth: authReducer,
+  restaurants: restaurantReducer,
   form
 });
 

@@ -1,18 +1,5 @@
 import axios from 'axios';
-import { AUTH_USER, AUTH_ERROR, FETCH_RESTAURANT } from './types.js';
-
-/*
-export const FETCH_RESTAURANT = 'FETCH_RESTAURANT';
-export function fetchRestaurant(area) {
-  const request = axios.post('/search', { area });
-
-  return {
-    type: FETCH_RESTAURANT,
-    payload: request
-  }
-  
-}
-*/
+import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, FETCH_MESSAGE, FETCH_RESTAURANT } from './types.js';
 
 export function fetchRestaurant(area) {
   return function(dispatch) {
@@ -34,25 +21,44 @@ export function login({email, password}) {
   return function(dispatch) {
     axios.post('/login', {email, password})
       .then((resp) => {
-        dispatch({ AUTH_USER });
+        dispatch({ type: AUTH_USER });
+        /*
+        dispatch({ 
+          type: AUTH_USER ,
+          payload: { authenticated: true }
+        });
+        */
         localStorage.setItem('token', resp.data.token);
       })
-      .catch(() => {
-        dispatch(authError('Bad Login Info'));
+      .catch((err) => {
+        dispatch(authError('Bad Login Info, From Login'));
       });
   }
 }
 
 export function register({email, password}) {
   return function(dispatch) {
-    axios.post('/register: actions', {email, password})
+    axios.post('/register', {email, password})
       .then((resp) => {
-        dispatch({ AUTH_USER });
+        dispatch({ type: AUTH_USER });
+        /*
+        dispatch({ 
+          type: AUTH_USER ,
+          payload: { authenticated: true }
+        });
+        */
         localStorage.setItem('token', resp.data.token);
       })
       .catch(() => {
-        dispatch(authError('Bad Login Info'));
+        dispatch(authError('Bad Login Info, From Register'));
       });
+  }
+}
+
+export function logout() {
+  localStorage.removeItem('token');
+  return function(dispatch) {
+    dispatch({ type: UNAUTH_USER });
   }
 }
 
@@ -60,5 +66,19 @@ export function authError(error) {
   return {
     type: AUTH_ERROR,
     payload: error
+  }
+}
+
+export function fetchMessage() {
+  return function(dispatch) {
+    axios.get(ROOT_URL, {
+      headers: { authorization: localStorage.getItem('token') }
+    })
+      .then(response => {
+        dispatch({
+          type: FETCH_MESSAGE,
+          payload: response.data.message
+        });
+      });
   }
 }

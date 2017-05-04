@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
 
 import Header from '../containers/header.js';
 import SearchBar from '../containers/searchBar.js';
@@ -11,11 +11,12 @@ import Dashboard from '../containers/Dashboard.js';
 // http://exprostudio.com/html/article/index.html
 
 class App extends Component {
-  componentWillReceiveProps() {
-    console.log('auth: ', this.props.authenticated)
+  componentDidUpdate() {
+    console.log('auth componentDidUpdate: ', this.props)
   }
 
   render() {
+   console.log('auth render: ', this.props.auth.authenticated) 
     return (
       <div className='app-container'> 
         <Header />
@@ -33,10 +34,8 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return { 
-    authenticated: state.auth.authenticated
-  };
+function mapStateToProps({ auth }) {
+  return { auth };
 }
 
 export default connect(mapStateToProps)(App);
