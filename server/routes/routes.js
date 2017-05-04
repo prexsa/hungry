@@ -22,7 +22,7 @@ module.exports = function(app, express) {
 
 	// Routes
 	app.post('/search', (req, res) => {
-		console.log('/search: ', req.body);
+		// console.log('/search: ', req.body);
 		const area = req.body.area;
 		yelp.search({ term: 'food', location: area })
 			.then(function (data) {
@@ -33,9 +33,6 @@ module.exports = function(app, express) {
 		});
 	})
 
-	app.post('/login', (req, res) => {
-		console.log('/login: ', req.body);
-	})
-
-	app.post('/signup', Authentication.signup);
+	app.post('/login', requireLogin, Authentication.login);
+	app.post('/register', Authentication.register);
 }

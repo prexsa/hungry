@@ -1,10 +1,8 @@
 import axios from 'axios';
-import { browserHistory } from 'react-router';
+import { AUTH_USER, AUTH_ERROR, FETCH_RESTAURANT } from './types.js';
 
-import { AUTH_USER, AUTH_ERROR } from './types.js';
-
+/*
 export const FETCH_RESTAURANT = 'FETCH_RESTAURANT';
-
 export function fetchRestaurant(area) {
   const request = axios.post('/search', { area });
 
@@ -14,15 +12,30 @@ export function fetchRestaurant(area) {
   }
   
 }
+*/
 
-export function logIn({email, password}) {
+export function fetchRestaurant(area) {
   return function(dispatch) {
-    console.log('email: ', email)
+    axios.post('/search', { area })
+      .then((resp) => {
+        dispatch({
+          type: FETCH_RESTAURANT,
+          payload: resp.data
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+  
+}
+
+export function login({email, password}) {
+  return function(dispatch) {
     axios.post('/login', {email, password})
-      .then(resp => {
-        dispatch({ type: AUTH_USER });
-        localStorage.setItem('token', response.data.token);
-        browserHistory.push('/dashboard');
+      .then((resp) => {
+        dispatch({ AUTH_USER });
+        localStorage.setItem('token', resp.data.token);
       })
       .catch(() => {
         dispatch(authError('Bad Login Info'));
@@ -32,7 +45,14 @@ export function logIn({email, password}) {
 
 export function register({email, password}) {
   return function(dispatch) {
-    console.log('register email: ', email);
+    axios.post('/register: actions', {email, password})
+      .then((resp) => {
+        dispatch({ AUTH_USER });
+        localStorage.setItem('token', resp.data.token);
+      })
+      .catch(() => {
+        dispatch(authError('Bad Login Info'));
+      });
   }
 }
 

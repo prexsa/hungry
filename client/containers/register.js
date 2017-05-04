@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import * as actions from '../actions/index.js';
 
 const required = value => value ? undefined : 'Required'
 const maxLength = max => value =>
@@ -28,8 +30,7 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
 class Register extends Component {
   
   handleFormSubmit({email, password}) {
-    console.log(email, password);
-    this.props.logIn({email, password});
+    this.props.register({email, password});
   }
 
   renderAlert() {
@@ -72,6 +73,8 @@ class Register extends Component {
   }
 }
 
-export default reduxForm({
+Register = reduxForm({
   form: 'register'
 })(Register);
+
+export default connect(null, actions)(Register);

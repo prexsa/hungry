@@ -6,7 +6,7 @@ var path = require('path');
 var morgan = require('morgan');
 var mongoose = require('mongoose');
 
-//mongoose.connect('mongodb://localhost:auth/auth');
+mongoose.connect('mongodb://localhost:auth/auth');
 
 
 

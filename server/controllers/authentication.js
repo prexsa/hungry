@@ -11,7 +11,7 @@ exports.login = function(req, res, next) {
   res.send({ token: tokenForUser(req.user) });
 }
 
-exports.signup = function(req, res, next) {
+exports.register = function(req, res, next) {
   var email = req.body.email;
   var password = req.body.password;
 

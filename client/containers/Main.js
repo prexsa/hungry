@@ -8,25 +8,29 @@ import Area from '../containers/ExploreArea.js';
 class Main extends Component {
 
   componentDidUpdate() {
-    const data = this.props.restaurants[0].businesses;
-    const lat = data[0].location.coordinate.latitude;
-    const lng = data[0].location.coordinate.longitude;
-    
-    const coordinates = {lat: lat, lng: lng };
+    if(this.props.restaurants.length <= 0) {
+      return <Area />;
+    }
+      const data = this.props.restaurants[0].businesses;
+      const lat = data[0].location.coordinate.latitude;
+      const lng = data[0].location.coordinate.longitude;
+      
+      const coordinates = {lat: lat, lng: lng };
 
-    const map = new google.maps.Map(this.refs.map , {
-      zoom: 15, 
-      center: coordinates
-    })
+      const map = new google.maps.Map(this.refs.map , {
+        zoom: 15, 
+        center: coordinates
+      })
 
-    const marker = new google.maps.Marker({
-      position: coordinates,
-      map: map
-    })
+      const marker = new google.maps.Marker({
+        position: coordinates,
+        map: map
+      })
     
   }
 
   render() {
+    console.log('Main: ', this.props)
     const data = this.props.restaurants;
     const buzz = data[0];
     if(!buzz) {

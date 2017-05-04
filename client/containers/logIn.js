@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
+import { connect } from 'react-redux';
 import * as actions from '../actions/index.js';
 import { Checkbox } from 'react-bootstrap';
 
@@ -31,8 +32,7 @@ const renderField = ({ input, label, type, meta: { touched, error, warning } }) 
 class Login extends Component {
   
   handleFormSubmit({email, password}) {
-    console.log(email, password);
-    this.props.logIn({email, password});
+    this.props.login({email, password});
   }
 
   renderAlert() {
@@ -68,6 +68,7 @@ class Login extends Component {
             label="Your Password"
             validate={[ required, maxLength15 ]}
           />
+          {this.renderAlert()}
           <Checkbox>Remember me</Checkbox>
           <button action="submit" className="btn btn-primary">Login</button>
         </form>
@@ -80,6 +81,8 @@ function mapStateToProps(state) {
   return { errorMessage: state.auth.error };
 }
 
-export default reduxForm({
+Login = reduxForm({
   form: 'login'
-}, mapStateToProps, actions)(Login);
+})(Login);
+
+export default connect(null, actions)(Login);
