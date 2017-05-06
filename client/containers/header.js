@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index.js';
-import { Nav, Navbar, MenuItem, NavDropdown} from 'react-bootstrap';
 
 import Login from '../containers/login.js';
 import Register from '../containers/register.js';
 
 class Header extends Component {
   goLogout() {
-    console.log('calling goLogout: ');
     this.props.logout();
   }
 
@@ -36,6 +34,7 @@ class Header extends Component {
       ]
     }
   }
+
   render() {
     return (
       <nav className="navbar navbar-inverse">

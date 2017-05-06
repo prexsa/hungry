@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { browserHistory } from 'react-router';
 import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, FETCH_MESSAGE, FETCH_RESTAURANT } from './types.js';
 
 export function fetchRestaurant(area) {
@@ -22,13 +23,8 @@ export function login({email, password}) {
     axios.post('/login', {email, password})
       .then((resp) => {
         dispatch({ type: AUTH_USER });
-        /*
-        dispatch({ 
-          type: AUTH_USER ,
-          payload: { authenticated: true }
-        });
-        */
         localStorage.setItem('token', resp.data.token);
+        browserHistory.push('/dashboard');
       })
       .catch((err) => {
         dispatch(authError('Bad Login Info, From Login'));
@@ -41,13 +37,8 @@ export function register({email, password}) {
     axios.post('/register', {email, password})
       .then((resp) => {
         dispatch({ type: AUTH_USER });
-        /*
-        dispatch({ 
-          type: AUTH_USER ,
-          payload: { authenticated: true }
-        });
-        */
         localStorage.setItem('token', resp.data.token);
+        browserHistory.push('/dashboard');
       })
       .catch(() => {
         dispatch(authError('Bad Login Info, From Register'));
@@ -59,6 +50,7 @@ export function logout() {
   localStorage.removeItem('token');
   return function(dispatch) {
     dispatch({ type: UNAUTH_USER });
+    browserHistory.push('/');
   }
 }
 
