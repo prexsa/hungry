@@ -5,15 +5,17 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var morgan = require('morgan');
 var mongoose = require('mongoose');
+var cors = require('cors');
+var cookieParser = require('cookie-parser');
 
 mongoose.connect('mongodb://localhost:auth/auth');
-
-
 
 var app = express();
 
 app.set('port', (process.env.PORT || 8080));
 app.use(morgan('combined'));
+app.use(cors());
+app.use(cookieParser());
 app.use(bodyParser.json({ type: '*/*'}));
 
 require('./routes/routes.js')(app, express);

@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchRestaurant } from '../actions/index.js';
+import { googleapi } from '../../config.js';
 
+// http://geobytes.com/free-ajax-cities-jsonp-api/
+// https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete
 
 class SearchBar extends Component {
 	constructor(props) {
@@ -32,6 +35,7 @@ class SearchBar extends Component {
 			<div className="searchbar-container">
 				<form onSubmit={this.onFormSubmit} className="input-group">
 					<input
+						id="city-suggest"
 					  placeholder="Find a restaurant in your area"
 					  className="form-control"
 					  value={this.state.term}
@@ -46,6 +50,9 @@ class SearchBar extends Component {
 
 	onInputChange(e) {
 		this.setState({ term: e.target.value });
+		const input = document.getElementById('city-suggest');
+		let googleAutocomplete = new google.maps.places.Autocomplete(input);
+		console.log('Autocomplete: ', googleAutocomplete)
 	}
 
 	onFormSubmit(e) {
@@ -60,3 +67,10 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(null, mapDispatchToProps)(SearchBar);
+
+window.addEventListener('load', () => {
+	let script = document.createElement('script');
+	script.type = 'text/javascript';
+	script.src	= `https://maps.googleapis.com/maps/api/js?key=${googleapi}&libraries=places`;
+	document.body.appendChild(script);
+});

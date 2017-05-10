@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { GOOGLE_MAPS_API } from '../../config.js';
+import { googleapi } from '../../config.js';
 
 import Area from '../containers/ExploreArea.js';
 

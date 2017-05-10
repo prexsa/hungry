@@ -15,7 +15,6 @@ export function fetchRestaurant(area) {
         console.log(err);
       })
   }
-  
 }
 
 export function login({email, password}) {

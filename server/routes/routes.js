@@ -31,8 +31,10 @@ module.exports = function(app, express) {
 		.catch(function (err) {
 		  console.error(err);
 		});
-	})
+	});
+
 
 	app.post('/login', requireLogin, Authentication.login);
 	app.post('/register', Authentication.register);
+
 }

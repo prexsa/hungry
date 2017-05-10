@@ -5,6 +5,15 @@ var JwtStrategy = require('passport-jwt').Strategy;
 var ExtractJwt = require('passport-jwt').ExtractJwt;
 var LocalStrategy = require('passport-local');
 
+// serialize and deserialize
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
+
+// https://scotch.io/tutorials/easy-node-authentication-facebook
 var localLogin = new LocalStrategy({ usernameField: 'email' }, function(email, password, done) {
   User.findOne({ email: email }, function(err, user) {
     if(err) { return done(err); }
@@ -26,6 +35,7 @@ var jwtOptions = {
 };
 
 var jwtLogin = new JwtStrategy(jwtOptions, function(payload, done) {
+  console.log('payload.sub: ', payload.sub)
   User.findById(payload.sub, function(err, user) {
     if(err) { return done(err, false); }
 
@@ -36,6 +46,7 @@ var jwtLogin = new JwtStrategy(jwtOptions, function(payload, done) {
     }
   });
 });
+
 
 passport.use(jwtLogin);
 passport.use(localLogin);
