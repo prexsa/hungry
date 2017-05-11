@@ -31,26 +31,26 @@ class Main extends Component {
 
   render() {
     const data = this.props.restaurants;
-    const buzz = data[0];
+    let buzz = data[0];
     if(!buzz) {
       return <Area />
     }
-    const business = buzz.businesses;
-console.log("Main.js data: ", business[0]);
-    const name = business[0].name;
-    const phone = business[0].display_phone.substr(1);
-    const address = business[0].location.display_address;
+    let business = buzz.businesses;
+    business = business[Math.floor(Math.random() * business.length)];
+    const name = business.name;
+    const phone = business.display_phone.substr(1);
+    const address = business.location.display_address;
     
     let addressStr = '';
     address.forEach((content) => {
       addressStr += " " + content;
     });
 
-
-    const rating = business[0].rating;
-    const ratingImg = business[0].rating_img_url;
-    const yelp_link = business[0].url;
-    const snippet = business[0].snippet_text;
+    const rating = business.rating;
+    const review_count = business.review_count;
+    const ratingImg = business.rating_img_url;
+    const yelp_link = business.url;
+    const snippet = business.snippet_text;
 
     const mapStyle = {
       width: 580,
@@ -77,7 +77,7 @@ console.log("Main.js data: ", business[0]);
               <hr width="50%" />
             </li>
             <li>
-              <img src={ratingImg} />&nbsp;{rating}
+              <img src={ratingImg} />&nbsp;{rating}star rating, {review_count} reviews
               <hr width="10%" />
             </li>
             <li>

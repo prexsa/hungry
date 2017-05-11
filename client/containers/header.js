@@ -14,19 +14,19 @@ class Header extends Component {
     if(this.props.auth.authenticated) {
       return (
         <li key={3}>
-          <a href="#" onClick={() => this.goLogout()}>logout</a>
+          <a href="#" onClick={() => this.goLogout()}>LOGOUT</a>
         </li>
       )
     }else{
       return [
         <li key={1} className="dropdown">
-          <a className="dropdown-toggle" data-toggle="dropdown" href="#">login</a>
+          <a className="dropdown-toggle" data-toggle="dropdown" href="#">LOGIN</a>
           <div className="dropdown-menu">
             <Login />
           </div>
         </li>,
         <li key={2} className="dropdown">
-          <a className="dropdown-toggle" data-toggle="dropdown" href="#">register</a>
+          <a className="dropdown-toggle" data-toggle="dropdown" href="#">REGISTER</a>
           <div className="dropdown-menu">
             <Register />
           </div>

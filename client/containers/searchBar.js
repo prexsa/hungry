@@ -36,12 +36,12 @@ class SearchBar extends Component {
 				<form onSubmit={this.onFormSubmit} className="input-group">
 					<input
 						id="city-suggest"
-					  placeholder="Find a restaurant in your area"
+					  placeholder="INPUT AN AREA"
 					  className="form-control"
 					  value={this.state.term}
 					  onChange={this.onInputChange} />
 					<span className="input-group-btn">
-					  <button type="submit" className="btn btn-secondary search-btn">Search</button>
+					  <button type="submit" className="btn btn-secondary search-btn">SEARCH</button>
 					</span>
 				</form>
 			</div>
@@ -49,10 +49,9 @@ class SearchBar extends Component {
 	}
 
 	onInputChange(e) {
-		this.setState({ term: e.target.value });
 		const input = document.getElementById('city-suggest');
-		let googleAutocomplete = new google.maps.places.Autocomplete(input);
-		console.log('Autocomplete: ', googleAutocomplete)
+		const googleAutocomplete = new google.maps.places.Autocomplete(input);
+		this.setState({ term: e.target.value });
 	}
 
 	onFormSubmit(e) {

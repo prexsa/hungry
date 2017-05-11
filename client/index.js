@@ -22,8 +22,8 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <IndexRoute component={Main} />
-        <Route path="dashboard" component={RequireAuth(Dashboard)} />
+        <IndexRoute component={Dashboard} />
+        <Route path="dashboard" component={RequireAuth(Main)} />
       </Route>
     </Router>
   </Provider>

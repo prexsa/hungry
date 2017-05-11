@@ -124,3 +124,15 @@ nav li:first-child {
   border-color: #f0ad4e;
   background-color: #333;
 }
+
+.favorites-captions {
+  text-align: left; 
+}
+
+.favorites-captions ul {
+  padding-left: 0px;
+}
+
+.favorites-captions ul li {
+  margin: 2px;
+}
