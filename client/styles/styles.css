@@ -5,7 +5,8 @@
 }
 
 body {
-	font-family: "Lekton","HelveticaNeue","Helvetica Neue",sans-serif;
+  font-family: 'Roboto', sans-serif;
+	/*font-family: "Lekton","HelveticaNeue","Helvetica Neue",sans-serif;*/
 	letter-spacing: 0.085em;
   background-color: #fff;
 }
@@ -54,7 +55,7 @@ nav li:first-child {
 }
 
 .searchbar-container {
-  width: 350px;
+  width: 475px;
   margin-top: 25px;
   margin-bottom: 25px;
   margin-left: auto;

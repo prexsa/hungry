@@ -4,6 +4,13 @@ import { bindActionCreators } from 'redux';
 import { fetchRestaurant } from '../actions/index.js';
 import { googleapi } from '../../config.js';
 
+import TextField from 'material-ui/TextField';
+import ActionSearch from 'material-ui/svg-icons/action/search';
+import MapPlace from 'material-ui/svg-icons/maps/place';
+import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+import FlatButton from 'material-ui/FlatButton';
+
+
 // http://geobytes.com/free-ajax-cities-jsonp-api/
 // https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete
 
@@ -26,14 +33,14 @@ class SearchBar extends Component {
 	    }
 
 	    function showCurrentPosition(position) {
-	    	console.log('position: ', position)
+	    	//console.log('position: ', position)
 	    }
 	}
 
 	render() {
 		return (
 			<div className="searchbar-container">
-				<form onSubmit={this.onFormSubmit} className="input-group">
+				{/*<form onSubmit={this.onFormSubmit} className="input-group">
 					<input
 						id="city-suggest"
 					  placeholder="INPUT AN AREA"
@@ -43,6 +50,32 @@ class SearchBar extends Component {
 					<span className="input-group-btn">
 					  <button type="submit" className="btn btn-secondary search-btn">SEARCH</button>
 					</span>
+				</form>*/}
+
+				<form onSubmit={this.onFormSubmit}>
+					<Toolbar style={{'height': 47}}>
+						<ToolbarGroup>
+							<ActionSearch />
+						</ToolbarGroup>
+						<ToolbarGroup>
+								<TextField
+									id="city-suggest"
+									placeholder="Enter a location" 
+									underlineStyle={{'left': -25}}
+									inputStyle={{'left': -25}}
+									underlineFocusStyle={{'left': -25}}
+									value={this.state.term}
+							  	onChange={this.onInputChange}
+								 />
+								<FlatButton
+									backgroundColor="#a4c639"
+		      				hoverColor="#8AA62F"  
+									label="Search"
+									style={{'height': 47, 'marginRight': -24, 'minWidth': 115}}
+									type="submit"
+								/>
+						</ToolbarGroup>
+					</Toolbar>
 				</form>
 			</div>
 		)

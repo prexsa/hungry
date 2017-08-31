@@ -4,6 +4,7 @@ import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, FETCH_MESSAGE, FETCH_RESTAURANT } f
 
 export function fetchRestaurant(area) {
   return function(dispatch) {
+    console.log('area: ', area)
     axios.post('/search', { area })
       .then((resp) => {
         dispatch({

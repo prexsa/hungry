@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 var cors = require('cors');
 var cookieParser = require('cookie-parser');
 
-mongoose.connect('mongodb://localhost:auth/auth');
+//mongoose.connect('mongodb://localhost:auth/auth');
 
 var app = express();
 

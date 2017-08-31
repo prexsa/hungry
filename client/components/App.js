@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import Header from '../containers/header.js';
 import SearchBar from '../containers/searchBar.js';
 
 // http://exprostudio.com/html/article/index.html
@@ -9,15 +9,16 @@ import SearchBar from '../containers/searchBar.js';
 class App extends Component {
   render() {
     return (
-      <div className='app-container'> 
-        <Header />
-        <div>
-          <h1><strong>PICK!</strong></h1>
-          <p>For Moments When Deciding Where To Eat Becomes A Chore</p>
+      <MuiThemeProvider>
+        <div className='app-container'> 
+          <div>
+            <h1><strong>PICK!</strong></h1>
+            <p>For Moments When Deciding Where To Eat Becomes A Chore</p>
+          </div>
+          <SearchBar />
+          {this.props.children}
         </div>
-        <SearchBar />
-        {this.props.children}
-      </div>
+      </MuiThemeProvider>
     )
   }
 }
