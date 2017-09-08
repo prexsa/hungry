@@ -1,14 +1,52 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, FETCH_MESSAGE, FETCH_RESTAURANT } from './types.js';
+import { 
+  AUTH_USER, 
+  UNAUTH_USER, 
+  AUTH_ERROR, 
+  FETCH_MESSAGE, 
+  FETCH_RESTAURANT,
+  FETCH_BUSINESS_HOURS,
+  FETCH_BUSINESS_REVIEWS } from './types.js';
 
 export function fetchRestaurant(area) {
+  console.log('area: ', area)
   return function(dispatch) {
-    console.log('area: ', area)
     axios.post('/search', { area })
       .then((resp) => {
         dispatch({
           type: FETCH_RESTAURANT,
+          payload: resp.data
+        })
+        browserHistory.push('/restaurantdetails');
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+}
+
+export function fetchBusinessHours(id) {
+  return function(dispatch) {
+    axios.post('/hours', {id})
+      .then((resp) => {
+        dispatch({
+          type: FETCH_BUSINESS_HOURS,
+          payload: resp.data
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+}
+
+export function fetchBusinessReviews(id) {
+  return function(dispatch) {
+    axios.post('/reviews', {id})
+      .then((resp) => {
+        dispatch({
+          type: FETCH_BUSINESS_REVIEWS,
           payload: resp.data
         })
       })

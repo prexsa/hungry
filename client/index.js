@@ -9,6 +9,7 @@ import reducers from './reducers/index.js';
 import App from './components/App.js';
 import Main from './containers/Main.js';
 import Dashboard from './containers/Dashboard.js';
+import RestaurantDetails from './containers/RestaurantDetails.js'
 import RequireAuth from './containers/auth/RequireAuth.js';
 import { AUTH_USER } from './actions/types.js';
 
@@ -18,12 +19,13 @@ const store = createStoreWithMiddleware(reducers);
 const token = localStorage.getItem('token');
 if(token) { store.dispatch({ type: AUTH_USER }); }
 
+
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <IndexRoute component={Dashboard} />
-        <Route path="dashboard" component={RequireAuth(Main)} />
+        <IndexRoute component={Main} />
+        <Route path="/restaurantdetails" component={RestaurantDetails} />
       </Route>
     </Router>
   </Provider>

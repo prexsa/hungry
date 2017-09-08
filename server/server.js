@@ -18,6 +18,10 @@ app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.json({ type: '*/*'}));
 
+/*app.get('*', function (request, response){
+    response.sendFile(path.resolve('client', 'index.html'));
+})*/
+
 require('./routes/routes.js')(app, express);
 
 app.listen(app.get('port'), function() {

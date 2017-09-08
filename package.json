@@ -23,6 +23,7 @@
     "jwt-simple": "^0.5.1",
     "mongoose": "^4.9.6",
     "morgan": "^1.8.1",
+    "node-yelp-api-v3": "^1.0.1",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "passport-jwt": "^2.2.1",
@@ -38,7 +39,8 @@
     "redux-thunk": "^2.2.0",
     "webpack": "^2.3.3",
     "webpack-dev-middleware": "^1.10.1",
-    "yelp": "^1.0.2"
+    "yelp": "^1.0.2",
+    "yelp-api-v3": "^1.5.0"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1",

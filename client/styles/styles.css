@@ -11,6 +11,10 @@ body {
   background-color: #fff;
 }
 
+h1 {
+  display: inline;
+}
+
 ul {
   list-style-type: none;
 }
@@ -24,6 +28,11 @@ nav li:first-child {
   float: right;
 }
 
+.clear {
+  width: 100%;
+  clear: both;
+}
+
 .clear-fix {
   overflow: auto;
   zoom: 1;
@@ -31,6 +40,19 @@ nav li:first-child {
 
 .app-container {
   text-align: center;
+}
+
+.bg {
+  background-image: url('../assets/pointer_map.jpg');
+  min-height: 700px; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.app-search-container {
+  position: relative;
+  top: 250px;
 }
 
 .header-container {
@@ -60,6 +82,26 @@ nav li:first-child {
   margin-bottom: 25px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.detail-container {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.restaurant-detail {
+  width: 40%;
+  float: left;
+}
+
+.details {
+  line-height: 1.75;
+  text-align: left;
+}
+
+.map-container {
+  width: 50%;
+  float: right;
 }
 
 .main-container {

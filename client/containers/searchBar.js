@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchRestaurant } from '../actions/index.js';
+import { Link } from 'react-router';
 import { googleapi } from '../../config.js';
 
 import TextField from 'material-ui/TextField';
@@ -17,41 +18,16 @@ import FlatButton from 'material-ui/FlatButton';
 class SearchBar extends Component {
 	constructor(props) {
 		super(props);
-
+		
 		this.state = { term: '' };
 
 		this.onInputChange = this.onInputChange.bind(this);
 		this.onFormSubmit = this.onFormSubmit.bind(this);
 	}
 
-	componentDidMount() {
-		// get long and lats of user's locations
-	    if (navigator.geolocation) {
-	        navigator.geolocation.getCurrentPosition(showCurrentPosition);
-	    } else { 
-	        x.innerHTML = "Geolocation is not supported by this browser.";
-	    }
-
-	    function showCurrentPosition(position) {
-	    	//console.log('position: ', position)
-	    }
-	}
-
 	render() {
 		return (
 			<div className="searchbar-container">
-				{/*<form onSubmit={this.onFormSubmit} className="input-group">
-					<input
-						id="city-suggest"
-					  placeholder="INPUT AN AREA"
-					  className="form-control"
-					  value={this.state.term}
-					  onChange={this.onInputChange} />
-					<span className="input-group-btn">
-					  <button type="submit" className="btn btn-secondary search-btn">SEARCH</button>
-					</span>
-				</form>*/}
-
 				<form onSubmit={this.onFormSubmit}>
 					<Toolbar style={{'height': 47}}>
 						<ToolbarGroup>
@@ -92,6 +68,7 @@ class SearchBar extends Component {
 		this.props.fetchRestaurant(this.state.term);
 		this.setState({ term: '' })
 	}
+
 }
 
 function mapDispatchToProps(dispatch) {
