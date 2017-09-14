@@ -21,15 +21,13 @@ class App extends Component {
         this.setState({ coords: position.coords });
       }
     }
-
-
   }
 
   render() {
     return (
       <MuiThemeProvider>
         <div className='app-container'> 
-          <h1><strong>P.A.P.!</strong></h1>
+          <h1><strong>PAP!</strong></h1>
           <h5>(Pick A Place!)</h5>
           {this.props.children}
         </div>

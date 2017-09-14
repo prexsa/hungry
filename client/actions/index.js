@@ -7,7 +7,8 @@ import {
   FETCH_MESSAGE, 
   FETCH_RESTAURANT,
   FETCH_BUSINESS_HOURS,
-  FETCH_BUSINESS_REVIEWS } from './types.js';
+  FETCH_BUSINESS_REVIEWS,
+  FETCH_SCRAPE } from './types.js';
 
 export function fetchRestaurant(area) {
   console.log('area: ', area)
@@ -47,6 +48,21 @@ export function fetchBusinessReviews(id) {
       .then((resp) => {
         dispatch({
           type: FETCH_BUSINESS_REVIEWS,
+          payload: resp.data
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+}
+
+export function fetchScrape(urlLink) {
+  return function(dispatch) {
+    axios.post('/yelplink', { urlLink })
+      .then((resp) => {
+        dispatch({
+          type: FETCH_SCRAPE,
           payload: resp.data
         })
       })

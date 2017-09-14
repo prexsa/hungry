@@ -7,7 +7,7 @@ class Reviews extends Component {
 
   render() {
     const { reviews } = this.props;
-    console.log('reviews: ', reviews)
+    // console.log('reviews: ', reviews)
     if(!reviews[0]) {
       return <div></div>;
     }

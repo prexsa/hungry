@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchBusinessHours, fetchBusinessReviews } from '../actions/index.js'
+import { fetchBusinessHours, fetchBusinessReviews, fetchScrape } from '../actions/index.js'
 
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import {List, ListItem} from 'material-ui/List';
 import {indigo500} from 'material-ui/styles/colors';
 import CommunicationCall from 'material-ui/svg-icons/communication/call';
 import CommunicationLocation from 'material-ui/svg-icons/communication/location-on';
+import ActionSchedule from 'material-ui/svg-icons/action/schedule';
 
 import SearchBar from '../containers/searchBar.js';
 import Hours from '../containers/Hours.js';
@@ -65,6 +66,7 @@ class RestaurantDetails extends Component {
 
     this.props.fetchBusinessHours(businessId);
     this.props.fetchBusinessReviews(businessId);
+    //this.props.fetchScrape(yelpUrl);
 
     return (
       <div>
@@ -102,6 +104,7 @@ class RestaurantDetails extends Component {
                 />
                 <ListItem 
                   primaryText={<Hours />}
+                  leftIcon={<ActionSchedule color="#f75c54" />}
                   disabled={true}
                 />
               </List>
@@ -120,7 +123,7 @@ class RestaurantDetails extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchBusinessReviews, fetchBusinessHours }, dispatch);
+  return bindActionCreators({ fetchBusinessReviews, fetchBusinessHours, fetchScrape }, dispatch);
 }
 
 function mapStateToProps({ restaurants }) {
